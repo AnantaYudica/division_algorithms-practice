@@ -17,7 +17,13 @@ void Print(std::uint8_t (&a)[N])
     {
         printf("%02X", a[i]);
     }
-        
+}
+
+template<std::size_t N>
+void Print(std::uint8_t (&a)[N], const int & e)
+{
+    Print(a);
+    if (e != 0) printf("E%c%d", e > 0 ? '+':'-', e);
 }
 
 } //!helper
