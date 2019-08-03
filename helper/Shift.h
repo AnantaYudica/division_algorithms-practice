@@ -16,7 +16,7 @@ void Shift(std::uint8_t (&a)[N], int s)
     s = (s / bsize);
     if (s > 0 || b > 0)
     {
-        for (std::size_t i = N - 1, j = N - s; i >= N;)
+        for (std::size_t i = N - 1, j = N - (s + 1); i < N;)
         {
             if (b == 0)
                 a[i--] = (j >= N ? 0 : a[j--]);
