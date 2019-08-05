@@ -21,7 +21,7 @@ void Shift(std::uint8_t (&a)[N], int s)
             if (b == 0)
                 a[i--] = (j >= N ? 0 : a[j--]);
             else
-                a[i--] = (std::uint8_t(a[j--] << b) | (j >= N) ? std::uint8_t(0) : 
+                a[i--] = std::uint8_t(a[j--] << b) | ((j >= N) ? std::uint8_t(0) : 
                     std::uint8_t(a[j] >> (8 - b)));
         }
     }
