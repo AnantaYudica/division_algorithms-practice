@@ -23,7 +23,8 @@ template<std::size_t N>
 void Print(std::uint8_t (&a)[N], const int & e)
 {
     Print(a);
-    if (e != 0) printf("E%c%d", e > 0 ? '+':'-', e);
+    if (e > 0) printf("E+%d", e);
+    else if (e < 0) printf("E%d", e);
 }
 
 } //!helper
