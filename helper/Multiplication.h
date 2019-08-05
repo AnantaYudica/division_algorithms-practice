@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <cstddef>
+#include <cstring>
 
 #include "Shift.h"
 #include "Additon.h"
@@ -14,9 +15,10 @@ template<std::size_t AS, std::size_t BS, std::size_t RS>
 void Multiplication(std::uint8_t (&a)[AS], std::uint8_t (&b)[BS],
     std::uint8_t (&r)[RS])
 {
+    std::uint8_t mul[RS];
     for (std::size_t i = 0; i < BS; ++i)
     {
-        std::uint8_t mul[RS];
+        std::memset(mul, 0, RS);
         std::uint16_t c = 0;
         std::uint8_t * cc = reinterpret_cast<std::uint8_t *>(&c);
         std::size_t j;
