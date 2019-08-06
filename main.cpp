@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "algorithm/RepeatedSubtraction.h"
+#include "algorithm/NewtonRaphson.h"
 #include "helper/Print.h"
 #include "helper/Comparison.h"
 
@@ -48,11 +49,9 @@ int main()
     std::uint8_t q0[2]{0x00, 0x00}; //0
     std::uint8_t res_q0[2]{0x20, 0x00}; //32
     std::uint8_t res_r0[2]{0x00, 0x00}; //0
-
     Test("repeated_subtraction", n0, d0, q0, 
         algorithm::repeated_subtraction::Divide,
         res_q0, res_r0);
-
     
     std::uint8_t n1[4]{0x01, 0x00, 0x00, 0x80}; // 2147483649
     std::uint8_t d1[4]{0x08, 0x00, 0x00, 0x00}; //8
@@ -62,5 +61,24 @@ int main()
     Test("repeated_subtraction", n1, d1, q1, 
         algorithm::repeated_subtraction::Divide,
         res_q1, res_r1);
+    
+    std::uint8_t n0_1[2]{0x00, 0x01}; // 256
+    std::uint8_t d0_1[2]{0x08, 0x00}; //8
+    std::uint8_t q0_1[2]{0x00, 0x00}; //0
+    std::uint8_t res_q0_1[2]{0x20, 0x00}; //32
+    std::uint8_t res_r0_1[2]{0x00, 0x00}; //0
+    Test("newton_raphson", n0_1, d0_1, q0_1, 
+        algorithm::newton_raphson::Divide,
+        res_q0_1, res_r0_1);
+
+    std::uint8_t n1_1[4]{0x01, 0x00, 0x00, 0x80}; // 2147483649
+    std::uint8_t d1_1[4]{0x08, 0x00, 0x00, 0x00}; //8
+    std::uint8_t q1_1[4]{0x00, 0x00, 0x00, 0x00}; //0
+    std::uint8_t res_q1_1[4]{0x00, 0x00, 0x00, 0x10}; //268435456
+    std::uint8_t res_r1_1[4]{0x01, 0x00, 0x00, 0x00}; //1
+    Test("newton_raphson", n1_1, d1_1, q1_1, 
+        algorithm::newton_raphson::Divide,
+        res_q1_1, res_r1_1);
+
     return 0;
 }
