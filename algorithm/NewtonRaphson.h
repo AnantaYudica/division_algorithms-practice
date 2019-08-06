@@ -25,7 +25,7 @@ void Divide(std::uint8_t (&n_r)[NRS], std::uint8_t (&d)[DS],
     constexpr std::size_t p = (NRS * 8) / 3; 
     constexpr std::size_t size = (NRS * 2);
     std::uint8_t x0[size], x[size], xn[size], bx[size], c2[size];
-    int x0_e = -1, x_e = 0, xn_e = -4, c2_e = 1, bx_e = 0;
+    int x0_e = -1, x_e = 0, xn_e = -((DS * 8) / 3), c2_e = 1, bx_e = 0;
     helper::Set(xn, 0x01);
     helper::Set(c2, 0x01);
     do
