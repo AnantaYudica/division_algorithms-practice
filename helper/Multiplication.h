@@ -24,10 +24,10 @@ void Multiplication(std::uint8_t (&a)[AS], std::uint8_t (&b)[BS],
         std::size_t j;
         for (j = 0; j < AS; ++j)
         {
+            if (b[i] == 0 && c == 0) break;
             std::uint16_t val = a[j];
             val *= b[i];
             std::uint8_t * pval = reinterpret_cast<std::uint8_t *>(&val);
-            if (val == 0 && c == 0) break;
             c += pval[0];
             mul[j] = cc[0];
             c >>= sizeof(std::uint8_t) * 8;
