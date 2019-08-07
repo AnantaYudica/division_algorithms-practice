@@ -46,6 +46,7 @@ void Divide(std::uint8_t (&n_r)[NRS], std::uint8_t (&d)[DS],
         helper::scientific_notation::Round(xn, xn_e, (p * 2) + 1);
         helper::scientific_notation::exponent::Equalize(xn, xn_e, x0, x0_e);
     } while(helper::Comparison(x0, xn) != 0);
+    std::memset(xn, 0, size);
     helper::Multiplication(n_r, x0, xn);
     helper::Shift(xn, xn_e);
     std::memcpy(q, xn, QS);
