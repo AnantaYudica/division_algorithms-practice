@@ -22,10 +22,11 @@ template<std::size_t NRS, std::size_t DS, std::size_t QS>
 void Divide(std::uint8_t (&n_r)[NRS], std::uint8_t (&d)[DS],
     std::uint8_t (&q)[QS])
 {
-    constexpr std::size_t p = (NRS * 8) / 3; 
-    constexpr std::size_t size = (NRS * 2);
+    constexpr std::size_t p = (NRS * 8) / 3, 
+        pb = (p * 3) + (((p * 3) % 2) == 0 ? 1 : 0); 
+    constexpr std::size_t size = (NRS * 4);
     std::uint8_t x0[size], x[size], xn[size], bx[size], c2[size];
-    int x0_e = -1, x_e = 0, xn_e = -((DS * 8) / 3), c2_e = 1, bx_e = 0;
+    int x0_e = -1, x_e = 0, xn_e = -(int(pb)), c2_e = 1, bx_e = 0;
     helper::Set(xn, 0x01);
     helper::Set(c2, 0x01);
     do
@@ -42,7 +43,7 @@ void Divide(std::uint8_t (&n_r)[NRS], std::uint8_t (&d)[DS],
         std::memset(xn, 0, size);
         helper::Multiplication(x0, x, xn);
         xn_e = x0_e + x_e;
-        helper::scientific_notation::Round(xn, xn_e, p);
+        helper::scientific_notation::Round(xn, xn_e, (p * 2) + 1);
         helper::scientific_notation::exponent::Equalize(xn, xn_e, x0, x0_e);
     } while(helper::Comparison(x0, xn) != 0);
     helper::Multiplication(n_r, x0, xn);
